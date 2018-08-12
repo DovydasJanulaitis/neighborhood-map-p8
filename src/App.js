@@ -9,6 +9,7 @@ class App extends Component {
     this.state = {
       mLocations: museumLocations,
       map: '',
+      markers: [],
       infoWindown: ''
     }
   }
@@ -20,7 +21,7 @@ class App extends Component {
 
   initMap = () => {
     let controller = this
-    const { mLocations } = this.state
+    const { mLocations, markers } = this.state
 
     let infoWindow = new window.google.maps.InfoWindow()
 
@@ -49,6 +50,9 @@ class App extends Component {
         title: title,
         id: id
       })
+
+      markers.push(marker)
+
       marker.addListener('click', function () {
         controller.displayInfoWindow(marker)
       })
@@ -73,7 +77,8 @@ class App extends Component {
       <div className="App">
         <Filter
           museumsList={this.state.mLocations}
-        />
+          markers={this.state.markers}
+          />
         <div id='map'>
         </div>
       </div>
