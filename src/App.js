@@ -20,7 +20,7 @@ class App extends Component {
 
   initMap = () => {
     let controller = this
-    const { mLocations } = this.state;
+    const { mLocations } = this.state
 
     let infoWindow = new window.google.maps.InfoWindow()
 
@@ -35,12 +35,12 @@ class App extends Component {
     this.setState({
       map,
       infoWindow
-    });
+    })
 
     for (let i = 0; i < mLocations.length; i++) {
 
-      let position = mLocations[i].position;
-      let title = mLocations[i].title;
+      let position = mLocations[i].position
+      let title = mLocations[i].title
       let id = mLocations[i].key
 
       let marker = new window.google.maps.Marker({
@@ -50,20 +50,20 @@ class App extends Component {
         id: id
       })
       marker.addListener('click', function () {
-        controller.displayInfoWindow(marker);
-      });
+        controller.displayInfoWindow(marker)
+      })
     }
   }
 
   displayInfoWindow(marker) {
-    const { map, infoWindow } = this.state;
+    const { map, infoWindow } = this.state
     if (infoWindow.marker !== marker) {
-      infoWindow.marker = marker;
-      infoWindow.setContent(`<div>${marker.title}</div>`);
-      infoWindow.open(map, marker);
+      infoWindow.marker = marker
+      infoWindow.setContent(`<div>${marker.title}</div>`)
+      infoWindow.open(map, marker)
       infoWindow.addListener('closeclick', function () {
-        infoWindow.setMarker = null;
-      });
+        infoWindow.setMarker = null
+      })
     }
   }
 
@@ -71,7 +71,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Filter />
+        <Filter
+          museumsList={this.state.mLocations}
+        />
         <div id='map'>
         </div>
       </div>
