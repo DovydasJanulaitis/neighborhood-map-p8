@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import * as museumLocations from './museumLocations.json'
+import Filter from './Filter'
 
 class App extends Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Filter />
         <div id='map'>
         </div>
       </div>
