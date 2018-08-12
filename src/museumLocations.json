@@ -1,0 +1,38 @@
+[
+  {
+    "key": "1",
+    "title": "Field Museum of Natural History",
+    "name": "Field Museum",
+    "position": { "lat": 41.866261, "lng": -87.616980 }
+  },
+  {
+    "key": "2",
+    "title": "Museum of Science and Industry",
+    "name": "Science Museum",
+    "position": { "lat": 41.790573, "lng": -87.583069 }
+  },
+  {
+    "key": "3",
+    "title": "Art Institute of Chicago",
+    "name": "Art Institute",
+    "position": { "lat": 41.879584, "lng": -87.623713 }
+  },
+  {
+    "key": "4",
+    "title": "Adler Planetarium",
+    "name": "Adler Planetarium",
+    "position": { "lat": 41.866333, "lng": -87.606783 }
+  },
+  {
+    "key": "5",
+    "title": "Museum Of Contemporary Art Chicago",
+    "name": "Contemporary Art",
+    "position": { "lat": 41.897228, "lng": -87.621342 }
+  },
+  {
+    "key": "6",
+    "title": "Chicago History Museum",
+    "name": "Chicago History",
+    "position": { "lat": 41.912038, "lng": -87.631492 }
+  }
+]
