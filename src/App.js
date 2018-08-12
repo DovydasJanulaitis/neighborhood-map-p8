@@ -30,7 +30,14 @@ class App extends Component {
         lng: -87.629799
       },
       map: map,
-      title: 'Helsinki Cnter'
+      title: 'Chicago'
+    })
+
+    let infoWindow = new window.google.maps.InfoWindow({
+      content: 'Sample Infowindow'
+    })
+    marker.addListener('click', function () {
+      infoWindow.open(map, marker)
     })
   }
 
