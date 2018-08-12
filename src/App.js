@@ -15,7 +15,10 @@ class App extends Component {
     loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyC_1Tld98WMbrkNnya8pUwW97QJ6581Jbw&callback=initMap')
   }
 
-  initMap() {
+  initMap = () => {
+
+    const { mLocations } = this.state;
+
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 13,
       center: {
@@ -24,21 +27,19 @@ class App extends Component {
       }
     })
 
-    let marker = new window.google.maps.Marker({
-      position: {
-        lat: 41.878113,
-        lng: -87.629799
-      },
-      map: map,
-      title: 'Chicago'
-    })
+    for (let i = 0; i < mLocations.length; i++) {
 
-    let infoWindow = new window.google.maps.InfoWindow({
-      content: 'Sample Infowindow'
-    })
-    marker.addListener('click', function () {
-      infoWindow.open(map, marker)
-    })
+      let position = mLocations[i].position;
+      let title = mLocations[i].title;
+      let id = mLocations[i].key
+
+      let marker = new window.google.maps.Marker({
+        map: map,
+        position: position,
+        title: title,
+        id: id
+      })
+    }
   }
 
   render() {
