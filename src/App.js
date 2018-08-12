@@ -3,6 +3,7 @@ import './App.css'
 import * as museumLocations from './museumLocations.json'
 import Filter from './Filter'
 import InfoWindow from './InfoWindow'
+import fetchJsonp from 'fetch-jsonp';
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +66,28 @@ class App extends Component {
       infoWindowStatus: true,
       currentMarker: marker
     })
+
+    this.getInfo(marker)
+  }
+
+  getInfo = (marker) => {
+
+  let place = marker.title;
+  let srcUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles=' +
+  place +
+  '&prop=revisions&rvprop=content&format=json&formatversion=2';
+  srcUrl = srcUrl.replace(/ /g, '%20');
+
+  fetchJsonp(srcUrl)
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(
+        `Network response was not ok: ${response.statustext}`);
+    }).then(function (data) {
+      console.log(data);
+    });
   }
 
   render() {
