@@ -76,7 +76,9 @@ class App extends Component {
           openInfoWindow={this.openInfoWindow}
           />
         {this.state.infoWindowStatus &&
-        <InfoWindow />
+        <InfoWindow
+          currentMarker={this.state.currentMarker}
+        />
         }
         <div id='map'>
         </div>

@@ -1,10 +1,11 @@
 import React from 'react'
 
 function InfoWindow(props) {
+  const { currentMarker } = props
 
   return (
     <div className="info-window-box">
-      Test Test Test
+      {currentMarker.title}
     </div>
   )
 }
