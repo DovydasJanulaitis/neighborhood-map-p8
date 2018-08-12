@@ -8,12 +8,18 @@ class Filter extends Component {
     this.state = {
       query: '',
       filteredMuseums: museumLocations,
-      filteredMarkers: []
+      filteredMarkers: [],
+      currentMarker: {}
     }
   }
 
+  componentDidMount() {
+    this.setState({
+      filteredMarkers: this.props.markers
+    });
+  }
+
   updateQuery = (query) => {
-    let controller = this
     this.setState({
       query
     })
@@ -54,6 +60,27 @@ class Filter extends Component {
       )
     }
 
+    manageClickedMarker = (location) => {
+      let controller = this
+      
+      this.getCurrentMarker(location)
+
+      setTimeout(function() {
+        controller.props.openInfoWindow(
+          controller.state.currentMarker
+        )
+      }, 1)
+    }
+
+    getCurrentMarker = (location) => {
+      this.state.filteredMarkers.map(filteredMarker =>
+        filteredMarker.id === location.key &&
+        this.setState({
+          currentMarker: filteredMarker
+        })
+      )
+    }
+
     render () {
 
       const { query, filteredMuseums } = this.state
@@ -78,7 +105,10 @@ class Filter extends Component {
               <li
                 className="location-item"
                 key={museum.key}
-                >
+                onClick={() =>
+                  this.manageClickedMarker(museum)
+                }
+              >
                 {museum.title}
               </li>
             ))

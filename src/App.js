@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import * as museumLocations from './museumLocations.json'
 import Filter from './Filter'
+import InfoWindow from './InfoWindow'
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
       mLocations: museumLocations,
       map: '',
       markers: [],
-      infoWindown: ''
+      infoWindowStatus: false,
+      currentMarker: {}
     }
   }
 
@@ -34,8 +36,7 @@ class App extends Component {
     })
 
     this.setState({
-      map,
-      infoWindow
+      map
     })
 
     for (let i = 0; i < mLocations.length; i++) {
@@ -54,23 +55,17 @@ class App extends Component {
       markers.push(marker)
 
       marker.addListener('click', function () {
-        controller.displayInfoWindow(marker)
+        controller.openInfoWindow(marker)
       })
     }
   }
 
-  displayInfoWindow(marker) {
-    const { map, infoWindow } = this.state
-    if (infoWindow.marker !== marker) {
-      infoWindow.marker = marker
-      infoWindow.setContent(`<div>${marker.title}</div>`)
-      infoWindow.open(map, marker)
-      infoWindow.addListener('closeclick', function () {
-        infoWindow.setMarker = null
-      })
-    }
+  openInfoWindow = (marker) => {
+    this.setState({
+      infoWindowStatus: true,
+      currentMarker: marker
+    })
   }
-
 
   render() {
     return (
@@ -78,7 +73,11 @@ class App extends Component {
         <Filter
           museumsList={this.state.mLocations}
           markers={this.state.markers}
+          openInfoWindow={this.openInfoWindow}
           />
+        {this.state.infoWindowStatus &&
+        <InfoWindow />
+        }
         <div id='map'>
         </div>
       </div>
