@@ -6,7 +6,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mLocations: museumLocations
+      mLocations: museumLocations,
+      map: '',
+      infoWindown: ''
     }
   }
 
@@ -16,16 +18,23 @@ class App extends Component {
   }
 
   initMap = () => {
-
+    let controller = this
     const { mLocations } = this.state;
 
+    let infoWindow = new window.google.maps.InfoWindow()
+
     let map = new window.google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: 12,
       center: {
         lat: 41.878113,
         lng: -87.629799
       }
     })
+
+    this.setState({
+      map,
+      infoWindow
+    });
 
     for (let i = 0; i < mLocations.length; i++) {
 
@@ -39,8 +48,24 @@ class App extends Component {
         title: title,
         id: id
       })
+      marker.addListener('click', function () {
+        controller.displayInfoWindow(marker);
+      });
     }
   }
+
+  displayInfoWindow(marker) {
+    const { map, infoWindow } = this.state;
+    if (infoWindow.marker !== marker) {
+      infoWindow.marker = marker;
+      infoWindow.setContent(`<div>${marker.title}</div>`);
+      infoWindow.open(map, marker);
+      infoWindow.addListener('closeclick', function () {
+        infoWindow.setMarker = null;
+      });
+    }
+  }
+
 
   render() {
     return (
