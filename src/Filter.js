@@ -49,6 +49,9 @@ class Filter extends Component {
       filtMuseums = this.props.museumsList.filter(museum =>
         match.test(museum.title)
       )
+      filtMarkers = this.props.markers.filter(marker =>
+        match.test(marker.title)
+      )
       this.setState({
         filteredMuseums: filtMuseums,
         filteredMarkers: filtMarkers

@@ -27,8 +27,6 @@ class App extends Component {
     let controller = this
     const { mLocations, markers } = this.state
 
-    let infoWindow = new window.google.maps.InfoWindow()
-
     let map = new window.google.maps.Map(document.getElementById('map'), {
       zoom: 12,
       center: {
