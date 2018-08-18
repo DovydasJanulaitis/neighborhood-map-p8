@@ -7,7 +7,7 @@
   },
   {
     "key": "2",
-    "title": "Museum of Science and Industry",
+    "title": "Museum of Science and Industry (Chicago)",
     "name": "Science Museum",
     "position": { "lat": 41.790573, "lng": -87.583069 }
   },
@@ -25,7 +25,7 @@
   },
   {
     "key": "5",
-    "title": "Museum Of Contemporary Art Chicago",
+    "title": "Museum of Contemporary Art, Chicago",
     "name": "Contemporary Art",
     "position": { "lat": 41.897228, "lng": -87.621342 }
   },

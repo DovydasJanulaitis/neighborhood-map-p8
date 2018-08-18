@@ -13,7 +13,8 @@ class App extends Component {
       map: '',
       markers: [],
       infoWindowStatus: false,
-      currentMarker: {}
+      currentMarker: {},
+      wikiContent: ''
     }
   }
 
@@ -72,53 +73,59 @@ class App extends Component {
 
   getInfo = (marker) => {
 
-  let place = marker.title;
-  let srcUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles=' +
-  place +
-  '&prop=revisions&rvprop=content&format=json&formatversion=2';
-  srcUrl = srcUrl.replace(/ /g, '%20');
+    let controller = this
 
-  fetchJsonp(srcUrl)
+    let place = marker.title
+    let srcUrl = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=' + place
+    srcUrl = srcUrl.replace(/ /g, '%20')
+
+    fetchJsonp(srcUrl)
     .then(function(response) {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error(
-        `Network response was not ok: ${response.statustext}`);
-    }).then(function (data) {
-      console.log(data);
-    });
-  }
+      return response.json()
+      }).then(function (data) {
+        let pages = data.query.pages
+        let pageID = Object.keys(data.query.pages)[0]
+        let pageContent = pages[pageID].extract
 
-  render() {
-    return (
-      <div className="App">
-        <Filter
-          museumsList={this.state.mLocations}
-          markers={this.state.markers}
-          openInfoWindow={this.openInfoWindow}
-          />
-        {this.state.infoWindowStatus &&
-        <InfoWindow
-          currentMarker={this.state.currentMarker}
-        />
-        }
-        <div id='map'>
+        controller.setState({
+          wikiContent: pageContent
+        })
+        console.log(pageContent)
+      }).catch(function(error) {
+        console.log('Wikipedia cannot load data. Try again', error)
+      })
+    }
+
+    render() {
+      return (
+        <div className="App">
+          <Filter
+            museumsList={this.state.mLocations}
+            markers={this.state.markers}
+            openInfoWindow={this.openInfoWindow}
+            />
+          {this.state.infoWindowStatus &&
+            <InfoWindow
+              currentMarker={this.state.currentMarker}
+              wikiContent={this.state.wikiContent}
+            />
+          }
+          <div id='map'>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
-}
 
-export default App
+  export default App
 
-function loadJS(src) {
-  let ref = window.document.getElementsByTagName('script')[0]
-  let script = window.document.createElement('script')
-  script.src = src
-  script.async = true
-  ref.parentNode.insertBefore(script, ref)
-  script.onerror = function () {
-    document.write('Google Maps Could not Load. Try Again')
+  function loadJS(src) {
+    let ref = window.document.getElementsByTagName('script')[0]
+    let script = window.document.createElement('script')
+    script.src = src
+    script.async = true
+    ref.parentNode.insertBefore(script, ref)
+    script.onerror = function () {
+      document.write('Google Maps Could not Load. Try Again')
+    }
   }
-}
