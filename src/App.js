@@ -60,15 +60,25 @@ class App extends Component {
         controller.openInfoWindow(marker)
       })
     }
+    map.addListener('click', function() {
+      controller.closeInfoWindow()
+    })
   }
+
 
   openInfoWindow = (marker) => {
     this.setState({
       infoWindowStatus: true,
       currentMarker: marker
     })
-
     this.getInfo(marker)
+  }
+
+  closeInfoWindow = () => {
+    this.setState({
+      infoWindowStatus: false,
+      currentMarker: {}
+    })
   }
 
   getInfo = (marker) => {
@@ -90,7 +100,6 @@ class App extends Component {
         controller.setState({
           wikiContent: pageContent
         })
-        console.log(pageContent)
       }).catch(function(error) {
         console.log('Wikipedia cannot load data. Try again', error)
       })
