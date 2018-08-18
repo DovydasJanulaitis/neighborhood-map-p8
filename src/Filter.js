@@ -9,7 +9,8 @@ class Filter extends Component {
       query: '',
       filteredMuseums: museumLocations,
       filteredMarkers: [],
-      currentMarker: {}
+      currentMarker: {},
+      listStatus: false
     }
   }
 
@@ -62,7 +63,7 @@ class Filter extends Component {
 
     manageClickedMarker = (location) => {
       let controller = this
-      
+
       this.getCurrentMarker(location)
 
       setTimeout(function() {
@@ -83,7 +84,7 @@ class Filter extends Component {
 
     render () {
 
-      const { query, filteredMuseums } = this.state
+      const { query, filteredMuseums, listStatus } = this.state
 
       return (
         <div className="list-box">
@@ -100,20 +101,23 @@ class Filter extends Component {
               onChange={(event) => this.updateQuery(event.target.value)}
               />
           </form>
-          <ul className="locations-list">
-            {filteredMuseums.map(museum => (
-              <li
-                className="location-item"
-                key={museum.key}
-                onClick={() =>
-                  this.manageClickedMarker(museum)
-                }
-              >
-                {museum.title}
-              </li>
-            ))
-          }
-        </ul>
+          {
+            listStatus &&
+            <ul className="locations-list">
+              {filteredMuseums.map(museum => (
+                <li
+                  className="location-item"
+                  key={museum.key}
+                  onClick={() =>
+                    this.manageClickedMarker(museum)
+                  }
+                  >
+                  {museum.title}
+                </li>
+              ))
+            }
+          </ul>
+        }
       </div>
     )
   }
