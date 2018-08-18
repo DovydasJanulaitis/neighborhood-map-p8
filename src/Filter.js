@@ -22,9 +22,21 @@ class Filter extends Component {
 
   updateQuery = (query) => {
     this.setState({
-      query
+      query,
+      listStatus: true
     })
+    if(query === '') {
+      this.setState({
+        listStatus: false
+      })
+    }
     this.handleDisplayedMuseums(query)
+  }
+
+  toggleList = () => {
+    this.setState((prevState) => ({
+      listStatus: !(prevState.listStatus)
+    }))
   }
 
   handleDisplayedMuseums = (query) => {
@@ -92,7 +104,11 @@ class Filter extends Component {
             className="list-form"
             onSubmit={(event) => event.preventDefault()}
             >
-            <button className="list-btn">Search</button>
+            <button
+              className="list-btn"
+              onClick={() => this.toggleList()}
+            >List Toggle
+            </button>
             <input
               className="list-input"
               type="text"
