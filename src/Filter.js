@@ -115,6 +115,7 @@ class Filter extends Component {
               placeholder="Filter Locations..."
               value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
+              aria-labelledby='filter'
               />
           </form>
           {

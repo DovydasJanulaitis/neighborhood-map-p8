@@ -5,7 +5,9 @@ function InfoWindow(props) {
 
   return (
     <div className="info-window-box">
-      {currentMarker.title}
+      <h2>
+        {currentMarker.title}
+      </h2>
       <div>
         {wikiContent}
       </div>

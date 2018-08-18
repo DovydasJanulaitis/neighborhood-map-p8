@@ -101,7 +101,10 @@ class App extends Component {
           wikiContent: pageContent
         })
       }).catch(function(error) {
-        console.log('Wikipedia cannot load data. Try again', error)
+        let wikiError = 'Wikipedia page failed to load'
+        controller.setState({
+          wikiContent: wikiError
+        })
       })
     }
 
@@ -119,7 +122,7 @@ class App extends Component {
               wikiContent={this.state.wikiContent}
             />
           }
-          <div id='map'>
+          <div id='map' role='application'>
           </div>
         </div>
       )
