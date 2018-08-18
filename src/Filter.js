@@ -10,7 +10,7 @@ class Filter extends Component {
       filteredMuseums: museumLocations,
       filteredMarkers: [],
       currentMarker: {},
-      listStatus: false
+      listStatus: true
     }
   }
 
