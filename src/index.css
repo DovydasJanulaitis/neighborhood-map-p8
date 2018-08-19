@@ -12,7 +12,7 @@ body, html, #root {
 
 .list-box {
   position: fixed;
-  top: 45px;
+  top: 100px;
   left: 0;
   z-index: 2;
   padding: 0 10px;
@@ -21,9 +21,10 @@ body, html, #root {
 .list-btn {
   border: none;
   padding: 5px 8px;
-  background: #fff;
+  background: #c2c6ce;
   font-weight: 600;
   border-radius: 2px 0 0 2px;
+  border: 1px solid black;
 }
 
 .list-btn:hover {
@@ -34,6 +35,7 @@ body, html, #root {
   border: none;
   padding: 5px 8px;
   border-radius: 2px 0 0 2px;
+  border: 1px solid black;
 }
 
 .list-form {
@@ -43,8 +45,9 @@ body, html, #root {
  .locations-list {
 	padding: 0 10px 10px 10px;
 	list-style: none;
-	background: #fff;
+	background: #c2c6ce;
 	width: 250px;
+  margin: 0;
 }
  .location-item {
 	padding: 5px 0;
@@ -59,11 +62,11 @@ body, html, #root {
 	bottom: 0;
 	left: 0;
 	z-index: 50;
-	width: 250px;
-	height: 50%;
+	width: 75%;
+	height: 25%;
 	min-height: 250px;
 	overflow: auto;
-	background: #fff;
+	background: #c2c6ce;
 	padding: 10px;
 	border-radius: 2px 2px 0 0;
 }
