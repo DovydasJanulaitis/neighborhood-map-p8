@@ -3,7 +3,7 @@ import './App.css'
 import * as museumLocations from './museumLocations.json'
 import Filter from './Filter'
 import InfoWindow from './InfoWindow'
-import fetchJsonp from 'fetch-jsonp';
+import fetchJsonp from 'fetch-jsonp'
 
 class App extends Component {
   constructor(props) {
@@ -39,17 +39,12 @@ class App extends Component {
       map
     })
 
-    for (let i = 0; i < mLocations.length; i++) {
-
-      let position = mLocations[i].position
-      let title = mLocations[i].title
-      let id = mLocations[i].key
-
+    mLocations.map(museum => {
       let marker = new window.google.maps.Marker({
         map: map,
-        position: position,
-        title: title,
-        id: id
+        position: museum.position,
+        title: museum.title,
+        id: museum.key
       })
 
       markers.push(marker)
@@ -57,12 +52,12 @@ class App extends Component {
       marker.addListener('click', function () {
         controller.openInfoWindow(marker)
       })
-    }
+    })
+
     map.addListener('click', function() {
       controller.closeInfoWindow()
     })
   }
-
 
   openInfoWindow = (marker) => {
     this.setState({

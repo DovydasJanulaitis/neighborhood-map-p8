@@ -17,7 +17,7 @@ class Filter extends Component {
   componentDidMount() {
     this.setState({
       filteredMarkers: this.props.markers
-    });
+    })
   }
 
   updateQuery = (query) => {
@@ -63,7 +63,7 @@ class Filter extends Component {
       })
     }
 
-    this.props.markers.map(marker => marker.setVisible(false));
+    this.props.markers.map(marker => marker.setVisible(false))
     setTimeout(function () {
       controller.props.markers.map(marker =>
         controller.handleMarkersVisibility(marker))
