@@ -75,3 +75,9 @@ body, html, #root {
 	font-size: 2em;
 	margin: 0 0 0 185px;
 }
+
+@media screen and (max-width: 500px) {
+	.list-box {
+		top: 50px;
+	}
+}
