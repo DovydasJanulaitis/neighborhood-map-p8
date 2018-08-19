@@ -20,6 +20,7 @@ class Filter extends Component {
     })
   }
 
+  // update state of query
   updateQuery = (query) => {
     this.setState({
       query,
@@ -39,6 +40,7 @@ class Filter extends Component {
     }))
   }
 
+  // filter list and markers on keyboard entry
   handleDisplayedMuseums = (query) => {
     let controller = this
     let filtMuseums

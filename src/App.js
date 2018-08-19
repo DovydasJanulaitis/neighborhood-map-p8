@@ -23,6 +23,7 @@ class App extends Component {
     loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyC_1Tld98WMbrkNnya8pUwW97QJ6581Jbw&callback=initMap')
   }
 
+  // Function to initialize map
   initMap = () => {
     let controller = this
     const { mLocations, markers } = this.state
@@ -39,6 +40,7 @@ class App extends Component {
       map
     })
 
+    // add markers for all museums in museumLocations.json file
     mLocations.map(museum => {
       let marker = new window.google.maps.Marker({
         map: map,
@@ -49,11 +51,13 @@ class App extends Component {
 
       markers.push(marker)
 
+      // open info window when a marker is clicked
       marker.addListener('click', function () {
         controller.openInfoWindow(marker)
       })
     })
 
+    // close info window when click anywhere on the map
     map.addListener('click', function() {
       controller.closeInfoWindow()
     })
@@ -74,6 +78,7 @@ class App extends Component {
     })
   }
 
+  // Wikipedia API call
   getInfo = (marker) => {
 
     let controller = this
