@@ -105,7 +105,7 @@ class Filter extends Component {
       const { query, filteredMuseums, listStatus } = this.state
 
       return (
-        <div className="list-box">
+        <section className="list-box">
           <form
             className="list-form"
             onSubmit={(event) => event.preventDefault()}
@@ -145,7 +145,7 @@ class Filter extends Component {
             }
           </ul>
         }
-      </div>
+      </section>
     )
   }
 }

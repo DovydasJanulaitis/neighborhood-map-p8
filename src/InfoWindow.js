@@ -4,7 +4,7 @@ function InfoWindow(props) {
   const { currentMarker, wikiContent } = props
 
   return (
-    <div
+    <aside
       className="info-window-box"
       tabIndex='4'
     >
@@ -14,7 +14,7 @@ function InfoWindow(props) {
       <div>
         {wikiContent}
       </div>
-    </div>
+    </aside>
   )
 }
 
