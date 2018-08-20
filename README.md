@@ -15,4 +15,4 @@ This small app allows user to explore locations of largest museums in Chicago, I
 - Project uses React framework
 - This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
 - Project uses [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial)
-- Project uses [MediaWiki API](https://www.mediawiki.org/wiki/API:Main_page) with `fetch-jsonp`
+- Project is powered by [Wikipedia](https://www.wikipedia.org) with `fetch-jsonp`

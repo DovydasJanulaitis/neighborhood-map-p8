@@ -61,7 +61,8 @@ class Filter extends Component {
     } else {
       this.setState({
         filteredMuseums: this.props.museumsList,
-        filteredMarkers: this.props.markers
+        filteredMarkers: this.props.markers,
+        listStatus: true
       })
     }
 
@@ -112,6 +113,7 @@ class Filter extends Component {
             <button
               className="list-btn"
               onClick={() => this.toggleList()}
+              tabIndex='1'
             >List Toggle
             </button>
             <input
@@ -120,19 +122,22 @@ class Filter extends Component {
               placeholder="Filter Locations..."
               value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
-              aria-labelledby='filter'
+              tabIndex='2'
               />
           </form>
           {
             listStatus &&
-            <ul className="locations-list">
+            <ul className="locations-list" id='locations-list'>
               {filteredMuseums.map(museum => (
                 <li
+                  role='button'
                   className="location-item"
                   key={museum.key}
                   onClick={() =>
                     this.manageClickedMarker(museum)
                   }
+                  tabIndex='3'
+                  aria-labelledby='locations-list'
                   >
                   {museum.title}
                 </li>
