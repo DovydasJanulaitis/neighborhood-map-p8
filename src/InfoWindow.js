@@ -13,6 +13,7 @@ function InfoWindow(props) {
       </h2>
       <div>
         {wikiContent}
+        <p>Powered by <a href='https://www.wikipedia.org'>Wikipedia</a></p>
       </div>
     </aside>
   )
