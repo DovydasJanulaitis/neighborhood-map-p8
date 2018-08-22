@@ -11,6 +11,12 @@ This small app allows user to explore locations of largest museums in Chicago, I
 - Run `npm start` to run the local server
 - The app will launch in your default browser on `localhost:3000`
 
+## Production
+
+Run `npm build`. This will build the app for production to the build folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+By default, it also includes a service worker so that your app loads from local cache on future visits.
+
 ## Dependencies
 - Project uses React framework
 - This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
