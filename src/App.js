@@ -46,6 +46,7 @@ class App extends Component {
         map: map,
         position: museum.position,
         title: museum.title,
+        animation: window.google.maps.Animation.DROP,
         id: museum.key
       })
 
@@ -54,6 +55,11 @@ class App extends Component {
       // open info window when a marker is clicked
       marker.addListener('click', function () {
         controller.openInfoWindow(marker)
+
+          marker.setAnimation(window.google.maps.Animation.BOUNCE);
+          setTimeout(() => {
+            marker.setAnimation(null)
+          }, 750) 
       })
     })
 
@@ -61,6 +67,9 @@ class App extends Component {
     map.addListener('click', function() {
       controller.closeInfoWindow()
     })
+
+
+
   }
 
   openInfoWindow = (marker) => {

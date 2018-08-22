@@ -82,6 +82,12 @@ class Filter extends Component {
     manageClickedMarker = (location) => {
       let controller = this
 
+      this.removeAnimationMarker();
+  		this.addAnimationMarker(location);
+  		setTimeout(function () {
+  			controller.removeAnimationMarker()
+  		}, 1250)
+
       this.getCurrentMarker(location)
 
       setTimeout(function() {
@@ -90,6 +96,22 @@ class Filter extends Component {
         )
       }, 1)
     }
+
+    removeAnimationMarker = () => {
+  		/* Remove all the animations */
+  		this.state.filteredMarkers.map(filteredMarker =>
+  			filteredMarker.setAnimation(null)
+  		)
+  	}
+
+  	addAnimationMarker = (location) => {
+  		/* Add animation to the active marker */
+  		this.state.filteredMarkers.map(filteredMarker =>
+  			filteredMarker.id === location.key &&
+  				filteredMarker.setAnimation(
+  					window.google.maps.Animation.BOUNCE)
+  		)
+  	}
 
     getCurrentMarker = (location) => {
       this.state.filteredMarkers.map(filteredMarker =>
@@ -127,7 +149,7 @@ class Filter extends Component {
           </form>
           {
             listStatus &&
-            <ul className="locations-list" id='locations-list'>
+            <ul className="locations-list">
               {filteredMuseums.map(museum => (
                 <li
                   role='button'
@@ -136,8 +158,12 @@ class Filter extends Component {
                   onClick={() =>
                     this.manageClickedMarker(museum)
                   }
+                  onKeyPress={(event) => {
+                    if(event.key === 'Enter') {
+                      this.manageClickedMarker(museum)
+                    }
+                  }}
                   tabIndex='3'
-                  aria-labelledby='locations-list'
                   >
                   {museum.title}
                 </li>
